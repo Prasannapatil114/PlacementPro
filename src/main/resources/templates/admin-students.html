@@ -1,0 +1,148 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Management | PlacementPro</title>
+
+  <style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #f3f4f6;
+        color: #1f2937;
+    }
+
+    header {
+        background: #1e40af;
+        color: white;
+        padding: 25px 35px;
+    }
+
+    .container {
+        max-width: 1100px;
+        margin: 35px auto;
+        padding: 0 20px;
+    }
+
+    .student-card {
+        background: white;
+        padding: 25px;
+        margin: 20px 0;
+        border-radius: 12px;
+        box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+    }
+
+    .student-card h2 {
+        color: #2563eb;
+        margin-top: 0;
+    }
+
+    .empty {
+        background: white;
+        padding: 25px;
+        border-radius: 10px;
+    }
+
+    .back {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 12px 22px;
+        background: #1e40af;
+        color: white;
+        text-decoration: none;
+        border-radius: 6px;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>PlacementPro - Student Management</h1>
+</header>
+
+<div class="container">
+
+  <h1>All Registered Students</h1>
+  <p>View and search student academic and registration details.</p>
+
+  <!-- Search and Filter -->
+  <form action="/admin/students" method="get"
+        style="display: flex; gap: 10px; flex-wrap: wrap; margin: 25px 0;">
+
+    <input type="text"
+           name="name"
+           placeholder="Search by student name"
+           th:value="${searchName}"
+           style="padding: 12px; border: 1px solid #ccc; border-radius: 6px;">
+
+    <select name="branch"
+            style="padding: 12px; border: 1px solid #ccc; border-radius: 6px;">
+
+      <option value="">All Branches</option>
+
+      <option value="CSE" th:selected="${selectedBranch == 'CSE'}">CSE</option>
+      <option value="ECE" th:selected="${selectedBranch == 'ECE'}">ECE</option>
+      <option value="ISE" th:selected="${selectedBranch == 'ISE'}">ISE</option>
+      <option value="ME" th:selected="${selectedBranch == 'ME'}">ME</option>
+    </select>
+
+    <button type="submit"
+            style="padding: 12px 20px; background: #1e40af;
+                   color: white; border: none; border-radius: 6px;">
+      Search
+    </button>
+
+    <a href="/admin/students"
+       style="padding: 12px 20px; background: #6b7280;
+              color: white; text-decoration: none; border-radius: 6px;">
+      Reset
+    </a>
+
+  </form>
+
+  <div th:if="${#lists.isEmpty(students)}" class="empty">
+    <p>No students registered yet.</p>
+  </div>
+
+  <div th:each="student : ${students}" class="student-card">
+
+    <h2 th:text="${student.name}">Student Name</h2>
+
+    <p>
+      <strong>Email:</strong>
+      <span th:text="${student.email}"></span>
+    </p>
+
+    <p>
+      <strong>Branch:</strong>
+      <span th:text="${student.branch}"></span>
+    </p>
+
+    <p>
+      <strong>CGPA:</strong>
+      <span th:text="${student.cgpa}"></span>
+    </p>
+
+    <p>
+      <strong>Graduation Year:</strong>
+      <span th:text="${student.graduationYear}"></span>
+    </p>
+
+  </div>
+
+  <a href="/admin/dashboard" class="back">
+    Back to Admin Dashboard
+  </a>
+
+</div>
+
+</body>
+</html>

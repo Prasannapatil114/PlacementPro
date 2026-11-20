@@ -1,0 +1,77 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>My Profile | PlacementPro</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f1f3f8;
+            margin: 0;
+            padding: 40px;
+        }
+
+        .profile-card {
+            background: white;
+            max-width: 550px;
+            margin: 40px auto;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        h1 {
+            color: #2345b5;
+        }
+
+        p {
+            font-size: 17px;
+            margin: 20px 0;
+        }
+
+        a {
+            display: inline-block;
+            background: #2345b5;
+            color: white;
+            padding: 12px 20px;
+            text-decoration: none;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="profile-card">
+
+    <h1>My Profile</h1>
+
+    <p><strong>Name:</strong>
+        <span th:text="${student.name}"></span>
+    </p>
+
+    <p><strong>Email:</strong>
+        <span th:text="${student.email}"></span>
+    </p>
+
+    <p><strong>Branch:</strong>
+        <span th:text="${student.branch}"></span>
+    </p>
+
+    <p><strong>CGPA:</strong>
+        <span th:text="${student.cgpa}"></span>
+    </p>
+
+    <p><strong>Graduation Year:</strong>
+        <span th:text="${student.graduationYear}"></span>
+    </p>
+
+    <a href="/edit-profile">Edit Profile</a>
+    <a href="/dashboard">Back to Dashboard</a>
+
+</div>
+
+</body>
+</html>

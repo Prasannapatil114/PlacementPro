@@ -1,0 +1,159 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Applications | PlacementPro</title>
+
+  <style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        background: #f3f4f6;
+        margin: 0;
+        color: #1f2937;
+    }
+
+    header {
+        background: #1e40af;
+        color: white;
+        padding: 25px;
+    }
+
+    .container {
+        max-width: 1100px;
+        margin: 30px auto;
+        padding: 0 20px;
+    }
+
+    .application-card {
+        background: white;
+        padding: 25px;
+        margin: 20px 0;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
+
+    .application-card h2 {
+        color: #2563eb;
+    }
+
+    .status {
+        font-weight: bold;
+        color: #d97706;
+    }
+
+    .back {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 12px 22px;
+        background: #1e40af;
+        color: white;
+        text-decoration: none;
+        border-radius: 6px;
+    }
+
+    .empty {
+        background: white;
+        padding: 25px;
+        border-radius: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>PlacementPro - Admin Panel</h1>
+</header>
+
+<div class="container">
+
+  <h1>All Student Applications</h1>
+  <p>View and manage placement applications submitted by students.</p>
+
+  <div th:if="${#lists.isEmpty(applications)}" class="empty">
+    <p>No applications have been submitted yet.</p>
+  </div>
+
+  <div th:each="app : ${applications}" class="application-card">
+
+    <h2 th:text="${app.student.name}">Student Name</h2>
+
+    <p>
+      <strong>Student Email:</strong>
+      <span th:text="${app.student.email}"></span>
+    </p>
+
+    <p>
+      <strong>Branch:</strong>
+      <span th:text="${app.student.branch}"></span>
+    </p>
+
+    <p>
+      <strong>CGPA:</strong>
+      <span th:text="${app.student.cgpa}"></span>
+    </p>
+
+    <p>
+      <strong>Company:</strong>
+      <span th:text="${app.placementDrive.companyName}"></span>
+    </p>
+
+    <p>
+      <strong>Job Role:</strong>
+      <span th:text="${app.placementDrive.jobRole}"></span>
+    </p>
+
+    <p>
+      <strong>Date Applied:</strong>
+      <span th:text="${app.appliedAt}"></span>
+    </p>
+
+    <p>
+      <strong>Current Status:</strong>
+      <span class="status" th:text="${app.status}"></span>
+    </p>
+
+    <form action="/admin/update-application" method="post">
+
+      <input type="hidden"
+             name="applicationId"
+             th:value="${app.id}">
+
+      <label>Update Status:</label>
+
+      <select name="status">
+        <option value="Pending"
+                th:selected="${app.status == 'Pending'}">
+          Pending
+        </option>
+
+        <option value="Selected"
+                th:selected="${app.status == 'Selected'}">
+          Selected
+        </option>
+
+        <option value="Rejected"
+                th:selected="${app.status == 'Rejected'}">
+          Rejected
+        </option>
+      </select>
+
+      <button type="submit">Update Status</button>
+
+    </form>
+
+  </div>
+
+  <a href="/admin/dashboard">Back to Dashboard</a>
+
+</div>
+
+</body>
+</html>

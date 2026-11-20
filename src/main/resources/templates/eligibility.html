@@ -1,0 +1,195 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eligibility Checker | PlacementPro</title>
+
+  <style>
+    * {
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
+
+    body {
+        margin: 0;
+        background: #f3f4f6;
+        color: #1f2937;
+    }
+
+    header {
+        background: #1e40af;
+        color: white;
+        padding: 20px 35px;
+    }
+
+    header h2 {
+        margin: 0;
+    }
+
+    .container {
+        max-width: 1000px;
+        margin: 40px auto;
+        padding: 0 20px;
+    }
+
+    .summary {
+        background: white;
+        padding: 25px;
+        border-radius: 12px;
+        margin-bottom: 25px;
+        box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+    }
+
+    .summary h1 {
+        color: #1e40af;
+    }
+
+    .stats {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+
+    .stat {
+        background: #eff6ff;
+        padding: 20px;
+        border-radius: 10px;
+        flex: 1;
+        min-width: 180px;
+    }
+
+    .stat h2 {
+        color: #2563eb;
+        margin: 0 0 8px;
+    }
+
+    .drive {
+        background: white;
+        padding: 25px;
+        border-radius: 12px;
+        margin-bottom: 18px;
+        box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+    }
+
+    .drive h3 {
+        color: #2563eb;
+        margin-top: 0;
+    }
+
+    .empty {
+        background: white;
+        padding: 35px;
+        text-align: center;
+        border-radius: 12px;
+    }
+
+    .back {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 12px 20px;
+        background: #1e40af;
+        color: white;
+        text-decoration: none;
+        border-radius: 6px;
+    }
+
+    footer {
+        text-align: center;
+        padding: 25px;
+        color: #777;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h2>PlacementPro | Eligibility Checker</h2>
+</header>
+
+<div class="container">
+
+  <div class="summary">
+    <h1>Placement Eligibility</h1>
+
+    <p>
+      Hello,
+      <strong th:text="${student.name}">Student</strong>!
+    </p>
+
+    <p>
+      Check the placement drives you qualify for based on
+      your CGPA and academic branch.
+    </p>
+
+    <div class="stats">
+
+      <div class="stat">
+        <h2 th:text="${totalDrives}">0</h2>
+        <p>Total Placement Drives</p>
+      </div>
+
+      <div class="stat">
+        <h2 th:text="${eligibleCount}">0</h2>
+        <p>Eligible Opportunities</p>
+      </div>
+
+    </div>
+  </div>
+
+  <h2>Drives You Are Eligible For</h2>
+
+  <div th:if="${#lists.isEmpty(eligibleDrives)}"
+       class="empty">
+
+    <h3>No Eligible Drives Found</h3>
+
+    <p>
+      Currently, there are no placement drives matching
+      your CGPA and branch requirements.
+    </p>
+
+    <a href="/drives" class="back">View All Drives</a>
+
+  </div>
+
+  <div th:each="drive : ${eligibleDrives}" class="drive">
+
+    <h3 th:text="${drive.companyName}">Company Name</h3>
+
+    <p>
+      <strong>Job Role:</strong>
+      <span th:text="${drive.jobRole}"></span>
+    </p>
+
+    <p>
+      <strong>Package:</strong>
+      <span th:text="${drive.packageLpa}"></span> LPA
+    </p>
+
+    <p>
+      <strong>Minimum CGPA:</strong>
+      <span th:text="${drive.minimumCgpa}"></span>
+    </p>
+
+    <p>
+      <strong>Eligible Branches:</strong>
+      <span th:text="${drive.eligibleBranch}"></span>
+    </p>
+
+    <a href="/drives" class="back">View Placement Drives</a>
+
+  </div>
+
+  <a href="/dashboard" class="back">Back to Dashboard</a>
+
+</div>
+
+<footer>
+  © 2026 PlacementPro. All rights reserved.
+</footer>
+
+</body>
+</html>

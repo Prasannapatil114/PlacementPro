@@ -1,0 +1,183 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Placement Drives | PlacementPro</title>
+
+  <style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f3f4f6;
+        margin: 0;
+    }
+
+    header {
+        background: #1e40af;
+        color: white;
+        padding: 25px;
+    }
+
+    h1 {
+        margin: 0;
+    }
+
+    .container {
+        padding: 30px;
+    }
+
+    .drive-card {
+        background: white;
+        padding: 30px;
+        margin: 20px 0;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
+
+    .drive-card h2 {
+        color: #2563eb;
+    }
+
+    button {
+        background: #1e40af;
+        color: white;
+        padding: 12px 22px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        margin-top: 15px;
+    }
+
+    button:hover {
+        background: #1d4ed8;
+    }
+
+    .back {
+        display: inline-block;
+        margin-top: 20px;
+        background: #1e40af;
+        color: white;
+        padding: 12px 22px;
+        text-decoration: none;
+        border-radius: 6px;
+    }
+
+    .message {
+        color: green;
+        font-weight: bold;
+    }
+
+    .empty {
+        background: white;
+        padding: 25px;
+        border-radius: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>PlacementPro - Placement Drives</h1>
+</header>
+
+<div class="container">
+
+  <h1>Available Placement Drives</h1>
+  <p>Explore company opportunities and start your career journey.</p>
+
+  <!-- Success Message -->
+  <p class="message" th:if="${param.applied}">
+    Application submitted successfully!
+  </p>
+
+  <!-- Error Messages -->
+  <p style="color: red; font-weight: bold;"
+     th:if="${param.ineligibleCgpa}">
+    You do not meet the minimum CGPA requirement!
+  </p>
+
+  <p style="color: red; font-weight: bold;"
+     th:if="${param.ineligibleBranch}">
+    Your branch is not eligible for this drive!
+  </p>
+
+  <p style="color: red; font-weight: bold;"
+     th:if="${param.deadlinePassed}">
+    The application deadline has passed!
+  </p>
+
+  <p style="color: red; font-weight: bold;"
+     th:if="${param.alreadyApplied}">
+    You have already applied for this placement drive!
+  </p>
+
+  <p th:if="${param.notfound}">
+    Placement drive not found.
+  </p>
+
+  <!-- No Drives -->
+  <div th:if="${#lists.isEmpty(drives)}" class="empty">
+    No placement drives available currently.
+  </div>
+
+  <!-- Placement Drive Cards -->
+  <div th:each="drive : ${drives}" class="drive-card">
+
+    <h2 th:text="${drive.companyName}"></h2>
+
+    <p><strong>Job Role:</strong>
+      <span th:text="${drive.jobRole}"></span>
+    </p>
+
+    <p><strong>Package:</strong>
+      <span th:text="${drive.packageLpa}"></span> LPA
+    </p>
+
+    <p><strong>Minimum CGPA:</strong>
+      <span th:text="${drive.minimumCgpa}"></span>
+    </p>
+
+    <p><strong>Eligible Branch:</strong>
+      <span th:text="${drive.eligibleBranch}"></span>
+    </p>
+
+    <p><strong>Application Deadline:</strong>
+      <span th:text="${drive.applicationDeadline}"></span>
+    </p>
+
+    <p><strong>Description:</strong>
+      <span th:text="${drive.jobDescription}"></span>
+    </p>
+
+    <!-- Apply Now: Students Only -->
+    <form th:unless="${isAdmin}"
+          th:action="@{/apply/{id}(id=${drive.id})}"
+          method="post">
+
+      <button type="submit">Apply Now</button>
+
+    </form>
+
+  </div>
+
+  <!-- Back Button for Admin -->
+  <a th:if="${isAdmin}"
+     href="/admin/dashboard"
+     class="back">
+    Back to Admin Dashboard
+  </a>
+
+  <!-- Back Button for Student -->
+  <a th:unless="${isAdmin}"
+     href="/dashboard"
+     class="back">
+    Back to Student Dashboard
+  </a>
+
+</div>
+
+</body>
+</html>

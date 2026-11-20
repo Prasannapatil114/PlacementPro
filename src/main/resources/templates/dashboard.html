@@ -1,0 +1,178 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard | PlacementPro</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f3f4f6;
+            color: #1f2937;
+        }
+
+        header {
+            background: #1e40af;
+            color: white;
+            padding: 20px 35px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h2 {
+            margin: 0;
+        }
+
+        .logout {
+            background: white;
+            color: #1e40af;
+            padding: 10px 18px;
+            border-radius: 6px;
+            text-decoration: none;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 35px auto;
+            padding: 0 20px;
+        }
+
+        .welcome {
+            margin-bottom: 30px;
+        }
+
+        .welcome h1 {
+            margin-bottom: 8px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .card-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+            min-height: 145px;
+            height: 100%;
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.10);
+        }
+
+        .card h3 {
+            color: #2563eb;
+        }
+
+        .card p {
+            color: #666;
+        }
+
+        .section {
+            background: white;
+            padding: 25px;
+            margin-top: 25px;
+            border-radius: 12px;
+        }
+
+        .section h2 {
+            color: #1e40af;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: #777;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h2>PlacementPro</h2>
+    <a href="/logout" class="logout">Logout</a>
+</header>
+
+<div class="container">
+
+    <!-- Welcome Section -->
+    <div class="welcome">
+        <h1>
+            Welcome,
+            <span th:text="${student.name}">Student</span>!
+        </h1>
+        <p>Manage your placement journey in one place.</p>
+    </div>
+
+    <!-- Dashboard Cards -->
+    <div class="cards">
+
+        <a href="/profile" class="card-link">
+            <div class="card">
+                <h3>My Profile</h3>
+                <p>View and manage your academic details.</p>
+            </div>
+        </a>
+
+        <a href="/drives" class="card-link">
+            <div class="card">
+                <h3>Placement Drives</h3>
+                <p>Explore available company opportunities.</p>
+            </div>
+        </a>
+
+        <a href="/my-applications" class="card-link">
+            <div class="card">
+                <h3>My Applications</h3>
+                <p>Track your placement applications.</p>
+            </div>
+        </a>
+
+        <a href="/eligibility" class="card-link">
+            <div class="card">
+                <h3>Eligibility</h3>
+                <p>Check your placement eligibility.</p>
+            </div>
+        </a>
+
+    </div>
+
+    <!-- Getting Started -->
+    <div class="section">
+        <h2>Getting Started</h2>
+        <p>
+            Your placement journey starts here.
+            Explore opportunities and prepare for your career!
+        </p>
+    </div>
+
+</div>
+
+<footer>
+    © 2026 PlacementPro. All rights reserved.
+</footer>
+
+</body>
+</html>

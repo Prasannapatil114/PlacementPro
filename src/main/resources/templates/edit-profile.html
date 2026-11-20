@@ -1,0 +1,93 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile | PlacementPro</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f1f3f8;
+            margin: 0;
+            padding: 40px 20px;
+        }
+
+        .edit-card {
+            background: white;
+            max-width: 500px;
+            margin: 30px auto;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        h1 {
+            color: #2345b5;
+        }
+
+        label {
+            display: block;
+            margin-top: 18px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-top: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        button, .back {
+            display: inline-block;
+            margin-top: 22px;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            background: #2345b5;
+            color: white;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="edit-card">
+
+    <h1>Edit My Profile</h1>
+
+    <form action="/edit-profile" method="post">
+
+        <label>Full Name</label>
+        <input type="text" name="name"
+               th:value="${student.name}" required>
+
+        <label>Branch</label>
+        <input type="text" name="branch"
+               th:value="${student.branch}" required>
+
+        <label>CGPA</label>
+        <input type="number" name="cgpa"
+               step="0.01" min="0" max="10"
+               th:value="${student.cgpa}" required>
+
+        <label>Graduation Year</label>
+        <input type="number" name="graduationYear"
+               th:value="${student.graduationYear}" required>
+
+        <button type="submit">Save Changes</button>
+
+    </form>
+
+    <a href="/profile" class="back">Cancel</a>
+
+</div>
+
+</body>
+</html>

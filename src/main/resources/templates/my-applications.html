@@ -1,0 +1,119 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Applications | PlacementPro</title>
+
+  <style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        background: #f3f4f6;
+        margin: 0;
+        color: #1f2937;
+    }
+
+    header {
+        background: #1e40af;
+        color: white;
+        padding: 25px;
+    }
+
+    .container {
+        max-width: 1000px;
+        margin: 30px auto;
+        padding: 0 20px;
+    }
+
+    .application-card {
+        background: white;
+        padding: 25px;
+        margin: 20px 0;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
+
+    .application-card h2 {
+        color: #2563eb;
+    }
+
+    .status {
+        font-weight: bold;
+        color: #d97706;
+    }
+
+    .back {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 12px 22px;
+        background: #1e40af;
+        color: white;
+        text-decoration: none;
+        border-radius: 6px;
+    }
+
+    .empty {
+        background: white;
+        padding: 25px;
+        border-radius: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>PlacementPro - My Applications</h1>
+</header>
+
+<div class="container">
+
+  <h1>My Applications</h1>
+  <p>Track the placement drives you have applied for.</p>
+
+  <div th:if="${#lists.isEmpty(applications)}" class="empty">
+    <p>You haven't applied for any placement drives yet.</p>
+    <a href="/drives">Explore Placement Drives</a>
+  </div>
+
+  <div th:each="app : ${applications}" class="application-card">
+
+    <h2 th:text="${app.placementDrive.companyName}">
+      Company Name
+    </h2>
+
+    <p>
+      <strong>Job Role:</strong>
+      <span th:text="${app.placementDrive.jobRole}"></span>
+    </p>
+
+    <p>
+      <strong>Package:</strong>
+      <span th:text="${app.placementDrive.packageLpa}"></span>
+      LPA
+    </p>
+
+    <p>
+      <strong>Date Applied:</strong>
+      <span th:text="${app.appliedAt}"></span>
+    </p>
+
+    <p>
+      <strong>Status:</strong>
+      <span class="status" th:text="${app.status}"></span>
+    </p>
+
+  </div>
+
+  <a href="/dashboard" class="back">Back to Dashboard</a>
+
+</div>
+
+</body>
+</html>

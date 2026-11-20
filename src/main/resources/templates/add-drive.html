@@ -1,0 +1,117 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Placement Drive | PlacementPro</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f3f4f6;
+            margin: 0;
+            padding: 30px 20px;
+        }
+
+        .form-card {
+            background: white;
+            max-width: 550px;
+            margin: 30px auto;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        h1 {
+            color: #1e40af;
+        }
+
+        label {
+            display: block;
+            margin-top: 18px;
+            font-weight: bold;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            margin-top: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        button {
+            margin-top: 22px;
+            padding: 12px 22px;
+            background: #1e40af;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .back {
+            display: inline-block;
+            margin-top: 20px;
+            color: #1e40af;
+            text-decoration: none;
+        }
+
+        .back:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="form-card">
+
+    <h1>Add Placement Drive</h1>
+
+    <form action="/admin/add-drive" method="post">
+
+        <label>Company Name</label>
+        <input type="text" name="companyName" required>
+
+        <label>Job Role</label>
+        <input type="text" name="jobRole" required>
+
+        <label>Package (LPA)</label>
+        <input type="number" name="packageLpa"
+               step="0.01" min="0" required>
+
+        <label>Minimum CGPA</label>
+        <input type="number" name="minimumCgpa"
+               step="0.01" min="0" max="10" required>
+
+        <label>Eligible Branch</label>
+        <input type="text" name="eligibleBranch" required>
+
+        <label>Application Deadline</label>
+        <input type="date" name="applicationDeadline" required>
+
+        <label>Job Description</label>
+        <textarea name="jobDescription" required></textarea>
+
+        <button type="submit">Add Placement Drive</button>
+
+    </form>
+
+    <!-- Return to Admin Dashboard -->
+    <a href="/admin/dashboard" class="back">
+        Back to Admin Dashboard
+    </a>
+
+</div>
+
+</body>
+</html>

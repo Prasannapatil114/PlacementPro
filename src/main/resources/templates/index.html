@@ -1,0 +1,185 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlacementPro | Campus Placements</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f6fb;
+            color: #1e293b;
+        }
+
+        nav {
+            background: #ffffff;
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px #0000000d;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: bold;
+            color: #2563eb;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #334155;
+            margin-left: 25px;
+        }
+
+        .hero {
+            padding: 100px 8%;
+            text-align: center;
+            background: linear-gradient(135deg, #1e40af, #3b82f6);
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 30px;
+            background: white;
+            color: #2563eb;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            background: #eaf0ff;
+        }
+
+        .features {
+            padding: 60px 8%;
+            text-align: center;
+        }
+
+        .features h2 {
+            margin-bottom: 35px;
+            font-size: 30px;
+        }
+
+        .cards {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            width: 260px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px #0000000d;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px #00000015;
+        }
+
+        .card h3 {
+            color: #2563eb;
+            margin-bottom: 12px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            background: #1e293b;
+            color: white;
+        }
+
+        @media (max-width: 600px) {
+            nav {
+                padding: 18px 5%;
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+
+            nav a {
+                margin-left: 10px;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<nav>
+    <div class="logo">PlacementPro</div>
+
+    <div>
+        <a href="/">Home</a>
+        <a href="/drives">Opportunities</a>
+        <a href="/login">Login</a>
+    </div>
+</nav>
+
+<section class="hero">
+    <h1>Launch Your Career With PlacementPro</h1>
+    <p>Your journey from campus to career starts here.</p>
+    <a href="/drives" class="btn">Explore Opportunities</a>
+</section>
+
+<section class="features">
+    <h2>Everything You Need</h2>
+
+    <div class="cards">
+
+        <a href="/login" class="card">
+            <h3>Student Portal</h3>
+            <p>Manage your profile and track your placement journey.</p>
+        </a>
+
+        <a href="/drives" class="card">
+            <h3>Job Opportunities</h3>
+            <p>Discover placement drives and exciting career opportunities.</p>
+        </a>
+
+        <a href="/my-applications" class="card">
+            <h3>Application Tracking</h3>
+            <p>Keep track of your applications and selection status.</p>
+        </a>
+
+    </div>
+</section>
+
+<footer>
+    © 2026 PlacementPro. All rights reserved.
+</footer>
+
+</body>
+</html>

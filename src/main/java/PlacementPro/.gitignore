@@ -1,0 +1,22 @@
+
+# Maven
+target/
+*.class
+
+# IntelliJ IDEA
+.idea/
+*.iml
+out/
+
+# Operating system
+.DS_Store
+Thumbs.db
+
+# Local secrets
+.env
+.env.*
+application-local.properties
+src/main/resources/application-local.properties
+
+# Logs
+*.log
