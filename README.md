@@ -14,6 +14,24 @@ PlacementPro is a web-based placement management application developed using Jav
 - Placement Application Tracking
 - Admin Dashboard
 - Student and Placement Drive Management
+- Edit and Update Placement Drives
+
+## 📸 Application Screenshots
+
+### 1. Homepage
+![PlacementPro Homepage](screenshots/homepage.png)
+
+### 2. Student Dashboard
+![Student Dashboard](screenshots/student-dashboard.png)
+
+### 3. Placement Drives
+![Placement Drives](screenshots/placement-drives.png)
+
+### 4. Admin Dashboard
+![Admin Dashboard](screenshots/admin-dashboard.png)
+
+### 5. Edit Placement Drive
+![Edit Placement Drive](screenshots/edit-drive.png)
 
 ## 🛠️ Technologies Used
 
@@ -31,6 +49,7 @@ PlacementPro is a web-based placement management application developed using Jav
 ## ⚙️ Installation and Setup
 
 ### Prerequisites
+
 - Java JDK 21
 - MySQL 8.4
 - IntelliJ IDEA
@@ -56,10 +75,10 @@ CREATE DATABASE placementpro;
 
 Set the following variables for your local environment:
 
-- DB_USERNAME
-- DB_PASSWORD
-- ADMIN_USERNAME
-- ADMIN_PASSWORD
+- `DB_USERNAME`
+- `DB_PASSWORD`
+- `ADMIN_USERNAME`
+- `ADMIN_PASSWORD`
 
 Never upload passwords or private credentials to GitHub.
 
