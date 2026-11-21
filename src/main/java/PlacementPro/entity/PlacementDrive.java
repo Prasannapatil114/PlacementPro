@@ -13,20 +13,18 @@ public class PlacementDrive {
     private Long id;
 
     private String companyName;
-
     private String jobRole;
-
     private Double packageLpa;
-
     private Double minimumCgpa;
-
     private String eligibleBranch;
-
     private LocalDate applicationDeadline;
 
     @Lob
     @Column(columnDefinition = "LONGTEXT")
     private String jobDescription;
+
+    public PlacementDrive() {
+    }
 
     public Long getId() {
         return id;

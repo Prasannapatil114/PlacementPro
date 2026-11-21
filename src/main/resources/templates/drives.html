@@ -5,74 +5,140 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Placement Drives | PlacementPro</title>
 
   <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
     body {
         font-family: Arial, sans-serif;
-        background: #f3f4f6;
-        margin: 0;
+        background: #f3f6fb;
+        color: #1e293b;
     }
 
     header {
-        background: #1e40af;
+        background: #172554;
         color: white;
-        padding: 25px;
+        padding: 22px 8%;
     }
 
-    h1 {
-        margin: 0;
+    header h1 {
+        font-size: 26px;
     }
 
     .container {
-        padding: 30px;
+        max-width: 1100px;
+        margin: 40px auto;
+        padding: 0 20px;
+    }
+
+    .page-title {
+        margin-bottom: 10px;
+        color: #172554;
+    }
+
+    .subtitle {
+        color: #64748b;
+        margin-bottom: 30px;
     }
 
     .drive-card {
         background: white;
-        padding: 30px;
-        margin: 20px 0;
+        padding: 25px;
+        margin-bottom: 22px;
         border-radius: 12px;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.06);
     }
 
     .drive-card h2 {
-        color: #2563eb;
+        color: #1d4ed8;
+        margin-bottom: 18px;
     }
 
-    button {
-        background: #1e40af;
-        color: white;
-        padding: 12px 22px;
+    .drive-card p {
+        margin-bottom: 12px;
+        line-height: 1.6;
+    }
+
+    .label {
+        font-weight: bold;
+        color: #334155;
+    }
+
+    .buttons {
+        display: flex;
+        gap: 12px;
+        margin-top: 20px;
+        flex-wrap: wrap;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 11px 20px;
+        border-radius: 7px;
+        text-decoration: none;
         border: none;
-        border-radius: 6px;
         cursor: pointer;
-        margin-top: 15px;
+        font-size: 14px;
+        font-weight: bold;
     }
 
-    button:hover {
+    .apply-btn {
+        background: #2563eb;
+        color: white;
+    }
+
+    .apply-btn:hover {
         background: #1d4ed8;
     }
 
-    .back {
-        display: inline-block;
-        margin-top: 20px;
-        background: #1e40af;
+    .edit-btn {
+        background: #16a34a;
         color: white;
-        padding: 12px 22px;
-        text-decoration: none;
-        border-radius: 6px;
     }
 
-    .message {
-        color: green;
+    .edit-btn:hover {
+        background: #15803d;
+    }
+
+    .back-btn {
+        display: inline-block;
+        margin-top: 15px;
+        padding: 12px 20px;
+        background: #e2e8f0;
+        color: #334155;
+        text-decoration: none;
+        border-radius: 7px;
         font-weight: bold;
     }
 
     .empty {
         background: white;
-        padding: 25px;
+        padding: 30px;
+        text-align: center;
         border-radius: 10px;
+        color: #64748b;
+    }
+
+    .message {
+        padding: 12px;
+        margin-bottom: 20px;
+        border-radius: 7px;
+    }
+
+    .success {
+        background: #dcfce7;
+        color: #166534;
+    }
+
+    .error {
+        background: #fee2e2;
+        color: #991b1b;
     }
   </style>
 </head>
@@ -85,95 +151,91 @@
 
 <div class="container">
 
-  <h1>Available Placement Drives</h1>
-  <p>Explore company opportunities and start your career journey.</p>
+  <h1 class="page-title">Available Placement Drives</h1>
 
-  <!-- Success Message -->
-  <p class="message" th:if="${param.applied}">
+  <p class="subtitle">
+    Explore company opportunities and start your career journey.
+  </p>
+
+  <div th:if="${param.success}" class="message success">
     Application submitted successfully!
-  </p>
+  </div>
 
-  <!-- Error Messages -->
-  <p style="color: red; font-weight: bold;"
-     th:if="${param.ineligibleCgpa}">
-    You do not meet the minimum CGPA requirement!
-  </p>
+  <div th:if="${param.error}" class="message error">
+    Something went wrong. Please try again.
+  </div>
 
-  <p style="color: red; font-weight: bold;"
-     th:if="${param.ineligibleBranch}">
-    Your branch is not eligible for this drive!
-  </p>
-
-  <p style="color: red; font-weight: bold;"
-     th:if="${param.deadlinePassed}">
-    The application deadline has passed!
-  </p>
-
-  <p style="color: red; font-weight: bold;"
-     th:if="${param.alreadyApplied}">
-    You have already applied for this placement drive!
-  </p>
-
-  <p th:if="${param.notfound}">
-    Placement drive not found.
-  </p>
-
-  <!-- No Drives -->
   <div th:if="${#lists.isEmpty(drives)}" class="empty">
     No placement drives available currently.
   </div>
 
-  <!-- Placement Drive Cards -->
   <div th:each="drive : ${drives}" class="drive-card">
 
-    <h2 th:text="${drive.companyName}"></h2>
+    <h2 th:text="${drive.companyName}">Company Name</h2>
 
-    <p><strong>Job Role:</strong>
+    <p>
+      <span class="label">Job Role:</span>
       <span th:text="${drive.jobRole}"></span>
     </p>
 
-    <p><strong>Package:</strong>
+    <p>
+      <span class="label">Package:</span>
       <span th:text="${drive.packageLpa}"></span> LPA
     </p>
 
-    <p><strong>Minimum CGPA:</strong>
+    <p>
+      <span class="label">Minimum CGPA:</span>
       <span th:text="${drive.minimumCgpa}"></span>
     </p>
 
-    <p><strong>Eligible Branch:</strong>
+    <p>
+      <span class="label">Eligible Branch:</span>
       <span th:text="${drive.eligibleBranch}"></span>
     </p>
 
-    <p><strong>Application Deadline:</strong>
+    <p>
+      <span class="label">Application Deadline:</span>
       <span th:text="${drive.applicationDeadline}"></span>
     </p>
 
-    <p><strong>Description:</strong>
+    <p>
+      <span class="label">Job Description:</span>
       <span th:text="${drive.jobDescription}"></span>
     </p>
 
-    <!-- Apply Now: Students Only -->
-    <form th:unless="${isAdmin}"
-          th:action="@{/apply/{id}(id=${drive.id})}"
-          method="post">
+    <div class="buttons">
 
-      <button type="submit">Apply Now</button>
+      <!-- Admin Edit Button -->
+      <a th:if="${isAdmin}"
+         th:href="@{/admin/drives/edit/{id}(id=${drive.id})}"
+         class="btn edit-btn">
+        Edit Drive
+      </a>
 
-    </form>
+      <!-- Student Apply Button -->
+      <form th:unless="${isAdmin}"
+            th:action="@{/apply/{id}(id=${drive.id})}"
+            method="post">
+
+        <button type="submit" class="btn apply-btn">
+          Apply Now
+        </button>
+
+      </form>
+
+    </div>
 
   </div>
 
-  <!-- Back Button for Admin -->
   <a th:if="${isAdmin}"
      href="/admin/dashboard"
-     class="back">
+     class="back-btn">
     Back to Admin Dashboard
   </a>
 
-  <!-- Back Button for Student -->
   <a th:unless="${isAdmin}"
      href="/dashboard"
-     class="back">
+     class="back-btn">
     Back to Student Dashboard
   </a>
 
